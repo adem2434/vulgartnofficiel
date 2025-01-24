@@ -1,0 +1,233 @@
+@tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    @import url('https://fonts.googleapis.com/css2?family=Impact&display=swap');
+
+    :root {
+      --accent-red: #E70013;  /* Tunisian red */
+      --accent-glow: rgba(231, 0, 19, 0.2); /* Tunisian red with opacity */
+      --silver-primary: #C0C0C0;
+      --silver-secondary: #E8E8E8;
+      --silver-glow: rgba(192, 192, 192, 0.3);
+    }
+
+    body {
+      @apply bg-black text-white;
+      cursor: default;
+      background: linear-gradient(to bottom, #000000, #0a0a0a);
+    }
+
+    /* Base animations */
+    .fade-in {
+      animation: fadeIn 0.8s ease-in;
+    }
+
+    .slide-up {
+      animation: slideUp 1s ease-out;
+    }
+
+    .hover-lift {
+      transition: transform 0.3s ease-out;
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-8px);
+    }
+
+    /* Hero section */
+    .hero-title {
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      letter-spacing: 0.1em;
+      font-style: italic;
+      transform: skew(-5deg);
+      animation: silverGlow 2s ease-in-out infinite alternate;
+      text-shadow: 
+        0 0 5px var(--silver-glow),
+        0 0 10px var(--silver-glow),
+        0 0 15px var(--silver-glow);
+      background: linear-gradient(45deg, var(--silver-primary), var(--silver-secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Navigation */
+    .nav-link {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--accent-red);
+      transform: translateX(-101%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .nav-link:hover::after {
+      transform: translateX(0);
+    }
+
+    /* Buttons */
+    .btn-hover-effect {
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .btn-hover-effect::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--accent-red);
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      z-index: -1;
+    }
+
+    .btn-hover-effect:hover::before {
+      transform: translateX(100%);
+    }
+
+    /* Product card */
+    .product-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: linear-gradient(45deg, #111111, #1a1a1a);
+      border: 1px solid #222;
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(231, 0, 19, 0.1);
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .product-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Newsletter form */
+    .newsletter-input {
+      @apply bg-transparent border-b border-zinc-700 px-4 py-2 focus:outline-none focus:border-white transition-colors duration-300;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .newsletter-button {
+      @apply px-6 py-2 border border-white hover:bg-white hover:text-black transition-all duration-300;
+      background: linear-gradient(45deg, var(--accent-red), #ff1f1f);
+      border: none;
+    }
+
+    /* Social links */
+    .social-link {
+      @apply text-gray-400 hover:text-white transition-colors duration-300;
+    }
+
+    /* Quick links */
+    .quick-link {
+      @apply inline-block text-sm text-gray-400 hover:text-white transition-colors duration-300 mr-6;
+      position: relative;
+    }
+
+    .quick-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--accent-red);
+      transform: scaleX(0);
+      transition: transform 0.3s ease-out;
+      transform-origin: right;
+    }
+
+    .quick-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Lookbook section */
+    .lookbook-item {
+      @apply relative overflow-hidden cursor-pointer;
+      background: linear-gradient(45deg, #111111, #1a1a1a);
+    }
+
+    .lookbook-overlay {
+      @apply absolute inset-0 bg-black bg-opacity-40 opacity-0 transition-opacity duration-300 flex items-center justify-center;
+      background: linear-gradient(45deg, rgba(231, 0, 19, 0.2), rgba(0, 0, 0, 0.6));
+    }
+
+    .lookbook-item:hover .lookbook-overlay {
+      @apply opacity-100;
+    }
+
+    /* Collection Preview */
+    .collection-preview {
+      @apply relative overflow-hidden;
+      background: linear-gradient(45deg, #111111, #1a1a1a);
+    }
+
+    .collection-preview::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--accent-red), transparent);
+      transform: scaleX(0);
+      transition: transform 0.6s ease-out;
+    }
+
+    .collection-preview:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes silverGlow {
+      from {
+        text-shadow: 
+          0 0 5px var(--silver-glow),
+          0 0 10px var(--silver-glow),
+          0 0 15px var(--silver-glow);
+      }
+      to {
+        text-shadow: 
+          0 0 10px var(--silver-glow),
+          0 0 20px var(--silver-glow),
+          0 0 30px var(--silver-glow);
+      }
+    }
